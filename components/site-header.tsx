@@ -77,10 +77,9 @@ export function SiteHeader() {
             <Button
               size="sm"
               className="bg-primary text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(37,99,235,0.7)]"
-              asChild
-            >
-              <a href="#community">Join Waitlist</a>
-            </Button>
+              nativeButton={false}
+              render={<a href="#community">Join Waitlist</a>}
+            />
           </div>
 
           <button
@@ -110,11 +109,15 @@ export function SiteHeader() {
                 <Button variant="outline" className="w-full gap-2">
                   <Wallet className="size-4" /> Connect Wallet
                 </Button>
-                <Button className="w-full bg-primary text-primary-foreground" asChild>
-                  <a href="#community" onClick={() => setOpen(false)}>
-                    Join Waitlist
-                  </a>
-                </Button>
+                <Button
+                  className="w-full bg-primary text-primary-foreground"
+                  nativeButton={false}
+                  render={
+                    <a href="#community" onClick={() => setOpen(false)}>
+                      Join Waitlist
+                    </a>
+                  }
+                />
               </div>
             </div>
           </div>
