@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Logo } from "./logo"
-import { Menu, X, Rocket, Wallet, Github } from "lucide-react" // ✅ Tambahkan Github di import
+import { Menu, X, Rocket, Wallet, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const NAV_ITEMS = [
@@ -46,8 +46,9 @@ export function SiteHeader() {
 
       {/* Nav */}
       <header
-        className={`border-b transition-all duration-300 ${scrolled ? "glass-strong border-border/70 shadow-sm" : "border-transparent bg-transparent"
-          }`}
+        className={`border-b transition-all duration-300 ${
+          scrolled ? "glass-strong border-border/70 shadow-sm" : "border-transparent bg-transparent"
+        }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
           <a href="#top" aria-label="Abraham Memory home">
@@ -67,49 +68,34 @@ export function SiteHeader() {
           </div>
 
           <div className="hidden items-center gap-2 lg:flex">
-            {/* ✅ TOMBOL GITHUB - TAMBAHKAN INI */}
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-border bg-card hover:bg-secondary gap-2"
-              nativeButton={false}
-              render={
-                <a
-                  href="https://github.com/AbrahamMemory"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Github className="size-4" />
-                  GitHub
-                </a>
-              }
-            />
+            {/* Tombol GitHub */}
+            <a
+              href="https://github.com/AbrahamMemory"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+            >
+              <Github className="size-4" />
+              GitHub
+            </a>
             
             {/* Tombol Follow on X */}
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-border bg-card hover:bg-secondary"
-              nativeButton={false}
-              render={
-                <a
-                  href="https://x.com/Abraham_Memoryz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Follow on X
-                </a>
-              }
-            />
+            <a
+              href="https://x.com/Abraham_Memoryz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+            >
+              Follow on X
+            </a>
             
             {/* Tombol Join Waitlist */}
-            <Button
-              size="sm"
-              className="bg-primary text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(37,99,235,0.7)]"
-              nativeButton={false}
-              render={<a href="#community">Join Waitlist</a>}
-            />
+            <a
+              href="#community"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(37,99,235,0.7)]"
+            >
+              Join Waitlist
+            </a>
           </div>
 
           <button
@@ -136,35 +122,30 @@ export function SiteHeader() {
                 </a>
               ))}
               <div className="mt-3 flex flex-col gap-2">
-                {/* ✅ TOMBOL GITHUB DI MOBILE */}
-                <Button
-                  variant="outline"
-                  className="w-full gap-2"
-                  nativeButton={false}
-                  render={
-                    <a
-                      href="https://github.com/AbrahamMemory"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                      onClick={() => setOpen(false)}
-                    >
-                      <Github className="size-4" /> GitHub
-                    </a>
-                  }
-                />
-                <Button variant="outline" className="w-full gap-2">
+                {/* Tombol GitHub di Mobile */}
+                <a
+                  href="https://github.com/AbrahamMemory"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+                >
+                  <Github className="size-4" />
+                  GitHub
+                </a>
+                <a
+                  href="#"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+                >
                   <Wallet className="size-4" /> Connect Wallet
-                </Button>
-                <Button
-                  className="w-full bg-primary text-primary-foreground"
-                  nativeButton={false}
-                  render={
-                    <a href="#community" onClick={() => setOpen(false)}>
-                      Join Waitlist
-                    </a>
-                  }
-                />
+                </a>
+                <a
+                  href="#community"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex w-full items-center justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground"
+                >
+                  Join Waitlist
+                </a>
               </div>
             </div>
           </div>
