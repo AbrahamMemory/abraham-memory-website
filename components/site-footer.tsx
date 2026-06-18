@@ -1,8 +1,14 @@
 import { Logo } from "./logo"
-import { Github, X } from "lucide-react" // Import ikon
 
-// Update LINKS - pisahkan menjadi navigation links
-const NAV_LINKS = ["Documentation", "Litepaper", "Community", "Newsletter"]
+// Update LINKS dengan URL yang benar
+const LINKS = [
+  { label: "X", href: "https://x.com/Abraham_Memoryz" },
+  { label: "GitHub", href: "https://github.com/AbrahamMemory" },
+  { label: "Documentation", href: "#docs" },
+  { label: "Litepaper", href: "#litepaper" },
+  { label: "Community", href: "#community" },
+  { label: "Newsletter", href: "#newsletter" },
+]
 
 export function SiteFooter() {
   return (
@@ -13,40 +19,19 @@ export function SiteFooter() {
             <Logo />
           </div>
 
-          {/* Navigation links - tanpa X dan GitHub */}
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            {NAV_LINKS.map((l) => (
+            {LINKS.map((link) => (
               <a
-                key={l}
-                href="#"
+                key={link.label}
+                href={link.href}
+                target={link.label === "X" || link.label === "GitHub" ? "_blank" : undefined}
+                rel={link.label === "X" || link.label === "GitHub" ? "noopener noreferrer" : undefined}
                 className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
               >
-                {l}
+                {link.label}
               </a>
             ))}
           </nav>
-
-          {/* Social Media Links - GitHub dan X dengan ikon */}
-          <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/AbrahamMemory"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full p-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground"
-              aria-label="GitHub"
-            >
-              <Github className="size-5" />
-            </a>
-            <a
-              href="https://x.com/Abraham_Memoryz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full p-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground"
-              aria-label="X (Twitter)"
-            >
-              <X className="size-5" />
-            </a>
-          </div>
 
           <div className="h-px w-full max-w-2xl bg-gradient-to-r from-transparent via-border to-transparent" />
 
