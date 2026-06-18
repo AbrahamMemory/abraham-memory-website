@@ -6,7 +6,7 @@ export function Logo({ className = "", showText = true }: { className?: string; 
     <div className={`flex items-center gap-2.5 ${className}`}>
       <span className="relative inline-flex size-8 items-center justify-center">
         <Image
-          src="/logonew.svg" // Ganti dengan nama file Anda
+          src="/logo-custom.png" // Ganti dengan nama file Anda
           alt="Abraham Memory Logo"
           width={32}
           height={32}
