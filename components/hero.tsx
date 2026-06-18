@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { MemoryNetwork } from "./memory-network"
-import { Wallet, ArrowRight, FileText, Github } from "lucide-react" // Tambahkan Github di import
+import { Wallet, ArrowRight, FileText } from "lucide-react"
 
 const BADGES = ["Built for AI Agents", "Memory Infrastructure Protocol", "Base Ecosystem Ready"]
 
@@ -65,7 +65,6 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.24 }}
             className="mt-9 flex flex-wrap items-center justify-center gap-3"
           >
-            {/* Tombol Join Waitlist */}
             <Button
               size="lg"
               className="group gap-2 bg-primary text-primary-foreground shadow-[0_12px_32px_-10px_rgba(37,99,235,0.7)] transition hover:shadow-[0_16px_40px_-10px_rgba(37,99,235,0.8)]"
@@ -77,27 +76,6 @@ export function Hero() {
                 </a>
               }
             />
-
-            {/* TOMBOL GITHUB - TAMBAHKAN INI */}
-            <Button
-              size="lg"
-              variant="outline"
-              className="gap-2 border-border bg-card/70 backdrop-blur hover:bg-card"
-              nativeButton={false}
-              render={
-                <a
-                  href="https://github.com/AbrahamMemory"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Github className="size-4" />
-                  GitHub
-                </a>
-              }
-            />
-
-            {/* Tombol Connect Wallet */}
             <Button size="lg" variant="outline" className="gap-2 border-border bg-card/70 backdrop-blur hover:bg-card">
               <Wallet className="size-4" /> Connect Wallet
             </Button>
