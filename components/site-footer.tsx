@@ -1,6 +1,8 @@
 import { Logo } from "./logo"
+import { Github, X } from "lucide-react" // Import ikon
 
-const LINKS = ["X", "GitHub", "Documentation", "Litepaper", "Community", "Newsletter"]
+// Update LINKS - pisahkan menjadi navigation links
+const NAV_LINKS = ["Documentation", "Litepaper", "Community", "Newsletter"]
 
 export function SiteFooter() {
   return (
@@ -11,8 +13,9 @@ export function SiteFooter() {
             <Logo />
           </div>
 
+          {/* Navigation links - tanpa X dan GitHub */}
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            {LINKS.map((l) => (
+            {NAV_LINKS.map((l) => (
               <a
                 key={l}
                 href="#"
@@ -22,6 +25,28 @@ export function SiteFooter() {
               </a>
             ))}
           </nav>
+
+          {/* Social Media Links - GitHub dan X dengan ikon */}
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/AbrahamMemory"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full p-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+              aria-label="GitHub"
+            >
+              <Github className="size-5" />
+            </a>
+            <a
+              href="https://x.com/Abraham_Memoryz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full p-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+              aria-label="X (Twitter)"
+            >
+              <X className="size-5" />
+            </a>
+          </div>
 
           <div className="h-px w-full max-w-2xl bg-gradient-to-r from-transparent via-border to-transparent" />
 
