@@ -70,6 +70,7 @@ export function Developers() {
               </Button>
               <Button variant="outline" className="gap-2 border-border bg-card">
                 <FileCode className="size-4" /> GitHub
+                { label: "GitHub", href: "https://github.com/AbrahamMemory" },
               </Button>
               <Button variant="outline" className="gap-2 border-border bg-card">
                 <Package className="size-4" /> SDK
