@@ -68,7 +68,6 @@ export function Hero() {
             <Button
               size="lg"
               className="group gap-2 bg-primary text-primary-foreground shadow-[0_12px_32px_-10px_rgba(37,99,235,0.7)] transition hover:shadow-[0_16px_40px_-10px_rgba(37,99,235,0.8)]"
-              nativeButton={false}
               render={
                 <a href="#community">
                   Join Waitlist

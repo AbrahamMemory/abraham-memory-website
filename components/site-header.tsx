@@ -46,8 +46,9 @@ export function SiteHeader() {
 
       {/* Nav */}
       <header
-        className={`border-b transition-all duration-300 ${scrolled ? "glass-strong border-border/70 shadow-sm" : "border-transparent bg-transparent"
-          }`}
+        className={`border-b transition-all duration-300 ${
+          scrolled ? "glass-strong border-border/70 shadow-sm" : "border-transparent bg-transparent"
+        }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
           <a href="#top" aria-label="Abraham Memory home">
@@ -67,27 +68,19 @@ export function SiteHeader() {
           </div>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-border bg-card hover:bg-secondary"
-              nativeButton={false}
-              render={
-                <a
-                  href="https://x.com/AbrahamMemory"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Follow on X
-                </a>
-              }
-            />
+            <Button variant="ghost" size="sm" className="gap-2 text-foreground hover:bg-secondary">
+              <Wallet className="size-4" /> Connect Wallet
+            </Button>
+            <Button variant="outline" size="sm" className="border-border bg-card hover:bg-secondary">
+              Follow on X
+            </Button>
             <Button
               size="sm"
               className="bg-primary text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(37,99,235,0.7)]"
-              nativeButton={false}
-              render={<a href="#community">Join Waitlist</a>}
-            />
+              asChild
+            >
+              <a href="#community">Join Waitlist</a>
+            </Button>
           </div>
 
           <button
@@ -117,15 +110,11 @@ export function SiteHeader() {
                 <Button variant="outline" className="w-full gap-2">
                   <Wallet className="size-4" /> Connect Wallet
                 </Button>
-                <Button
-                  className="w-full bg-primary text-primary-foreground"
-                  nativeButton={false}
-                  render={
-                    <a href="#community" onClick={() => setOpen(false)}>
-                      Join Waitlist
-                    </a>
-                  }
-                />
+                <Button className="w-full bg-primary text-primary-foreground" asChild>
+                  <a href="#community" onClick={() => setOpen(false)}>
+                    Join Waitlist
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
