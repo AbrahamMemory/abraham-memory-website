@@ -80,9 +80,6 @@ export function Hero() {
               <Wallet className="size-4" /> Connect Wallet
             </Button>
             <Button size="lg" variant="ghost" className="gap-2 text-foreground hover:bg-secondary">
-              Follow on X
-            </Button>
-            <Button size="lg" variant="ghost" className="gap-2 text-foreground hover:bg-secondary">
               <FileText className="size-4" /> Read Litepaper
             </Button>
           </motion.div>
