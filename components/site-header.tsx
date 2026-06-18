@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Logo } from "./logo"
-import { Menu, X, Rocket, Wallet, Github } from "lucide-react" // Github sudah di-import
+import { Menu, X, Rocket, Wallet } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const NAV_ITEMS = [
@@ -67,26 +67,6 @@ export function SiteHeader() {
           </div>
 
           <div className="hidden items-center gap-2 lg:flex">
-            {/* TOMBOL GITHUB - TERHUBUNG KE https://github.com/AbrahamMemory */}
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-border bg-card hover:bg-secondary gap-2"
-              nativeButton={false}
-              render={
-                <a
-                  href="https://github.com/AbrahamMemory"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Github className="size-4" />
-                  GitHub
-                </a>
-              }
-            />
-            
-            {/* Tombol Follow on X */}
             <Button
               variant="outline"
               size="sm"
@@ -102,8 +82,6 @@ export function SiteHeader() {
                 </a>
               }
             />
-            
-            {/* Tombol Join Waitlist */}
             <Button
               size="sm"
               className="bg-primary text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(37,99,235,0.7)]"
@@ -136,23 +114,6 @@ export function SiteHeader() {
                 </a>
               ))}
               <div className="mt-3 flex flex-col gap-2">
-                {/* TOMBOL GITHUB DI MOBILE */}
-                <Button 
-                  variant="outline" 
-                  className="w-full gap-2"
-                  nativeButton={false}
-                  render={
-                    <a
-                      href="https://github.com/AbrahamMemory"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                      onClick={() => setOpen(false)}
-                    >
-                      <Github className="size-4" /> GitHub
-                    </a>
-                  }
-                />
                 <Button variant="outline" className="w-full gap-2">
                   <Wallet className="size-4" /> Connect Wallet
                 </Button>
