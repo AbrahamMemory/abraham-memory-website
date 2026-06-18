@@ -69,8 +69,7 @@ export function Developers() {
                 <BookOpen className="size-4" /> Documentation
               </Button>
               <Button variant="outline" className="gap-2 border-border bg-card">
-                <FileCode className="size-4" /> GitHub
-                { label: "GitHub", href: "https://github.com/AbrahamMemory" },
+                <FileCode className="size-4" /> "GitHub" , href: "https://github.com/AbrahamMemory"
               </Button>
               <Button variant="outline" className="gap-2 border-border bg-card">
                 <Package className="size-4" /> SDK
