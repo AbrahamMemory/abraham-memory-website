@@ -1,6 +1,14 @@
 import { Logo } from "./logo"
 
-const LINKS = ["X", "GitHub", "Documentation", "Litepaper", "Community", "Newsletter"]
+// Update LINKS dengan URL yang benar
+const LINKS = [
+  { label: "X", href: "https://x.com/Abraham_Memoryz" },
+  { label: "GitHub", href: "https://github.com/AbrahamMemory" },
+  { label: "Documentation", href: "#docs" },
+  { label: "Litepaper", href: "#litepaper" },
+  { label: "Community", href: "#community" },
+  { label: "Newsletter", href: "#newsletter" },
+]
 
 export function SiteFooter() {
   return (
@@ -12,13 +20,15 @@ export function SiteFooter() {
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            {LINKS.map((l) => (
+            {LINKS.map((link) => (
               <a
-                key={l}
-                href="#"
+                key={link.label}
+                href={link.href}
+                target={link.label === "X" || link.label === "GitHub" ? "_blank" : undefined}
+                rel={link.label === "X" || link.label === "GitHub" ? "noopener noreferrer" : undefined}
                 className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
               >
-                {l}
+                {link.label}
               </a>
             ))}
           </nav>
