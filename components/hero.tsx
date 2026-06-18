@@ -93,7 +93,7 @@ export function Hero() {
       Follow on X
     </a>
   }
-/>
+/>snap
             </Button>
             <Button size="lg" variant="ghost" className="gap-2 text-foreground hover:bg-secondary">
               <FileText className="size-4" /> Read Litepaper
