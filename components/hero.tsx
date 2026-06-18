@@ -79,21 +79,8 @@ export function Hero() {
             <Button size="lg" variant="outline" className="gap-2 border-border bg-card/70 backdrop-blur hover:bg-card">
               <Wallet className="size-4" /> Connect Wallet
             </Button>
-            <Button
-  size="lg"
-  variant="ghost"
-  className="gap-2 text-foreground hover:bg-secondary"
-  nativeButton={false}
-  render={
-    <a
-      href="https://x.com/AbrahamMemory"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Follow on X
-    </a>
-  }
-/>
+            <Button size="lg" variant="ghost" className="gap-2 text-foreground hover:bg-secondary">
+              Follow on X
             </Button>
             <Button size="lg" variant="ghost" className="gap-2 text-foreground hover:bg-secondary">
               <FileText className="size-4" /> Read Litepaper
