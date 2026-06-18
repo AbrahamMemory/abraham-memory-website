@@ -68,7 +68,7 @@ export function Developers() {
               <Button className="gap-2 bg-primary text-primary-foreground">
                 <BookOpen className="size-4" /> Documentation
               </Button>
-<a
+              <a
   href="https://github.com/AbrahamMemory"
   target="_blank"
   rel="noopener noreferrer"
