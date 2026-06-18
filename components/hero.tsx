@@ -79,7 +79,7 @@ export function Hero() {
             <Button size="lg" variant="outline" className="gap-2 border-border bg-card/70 backdrop-blur hover:bg-card">
               <Wallet className="size-4" /> Connect Wallet
             </Button>
-<Button
+            <Button
   size="lg"
   variant="ghost"
   className="gap-2 text-foreground hover:bg-secondary"
