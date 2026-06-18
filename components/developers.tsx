@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Reveal } from "./reveal"
 import { Button } from "@/components/ui/button"
-import { Code2, Boxes, Cpu, Search, Layers, BookOpen, Package, FileCode, Github } from "lucide-react" // ✅ Tambah Github
+import { Code2, Boxes, Cpu, Search, Layers, BookOpen, Package, FileCode, Github } from "lucide-react" // ✅ Import Github
 
 const FEATURES = [
   { icon: Code2, title: "Memory API", desc: "REST & streaming endpoints for store and recall." },
@@ -69,7 +69,7 @@ export function Developers() {
                 <BookOpen className="size-4" /> Documentation
               </Button>
               
-              {/* ✅ TOMBOL GITHUB - SEKARANG LINK AKTIF */}
+              {/* ✅ TOMBOL GITHUB - LINK AKTIF */}
               <a
                 href="https://github.com/AbrahamMemory"
                 target="_blank"
