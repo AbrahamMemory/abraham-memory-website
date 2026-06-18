@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Reveal } from "./reveal"
 import { Button } from "@/components/ui/button"
-import { Code2, Boxes, Cpu, Search, Layers, BookOpen, Package, FileCode, Github } from "lucide-react" // ✅ Tambahkan Github
+import { Code2, Boxes, Cpu, Search, Layers, BookOpen, Package, FileCode, Github } from "lucide-react" // ✅ Github (b kecil)
 
 const FEATURES = [
   { icon: Code2, title: "Memory API", desc: "REST & streaming endpoints for store and recall." },
@@ -65,30 +65,28 @@ export function Developers() {
 
           <Reveal delay={0.2}>
             <div className="mt-7 flex flex-wrap gap-2">
+              {/* Tombol Documentation */}
               <Button className="gap-2 bg-primary text-primary-foreground">
                 <BookOpen className="size-4" /> Documentation
               </Button>
               
-              {/* ✅ TOMBOL GITHUB - SUDAH TERKONEKSI */}
-              <Button 
-                variant="outline" 
-                className="gap-2 border-border bg-card"
-                nativeButton={false}
-                render={
-                  <a
-                    href="https://github.com/AbrahamMemory"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <Github className="size-4" /> GitHub
-                  </a>
-                }
-              />
+              {/* ✅ TOMBOL GITHUB - PAKAI <a> LANGSUNG (TANPA Button) */}
+              <a
+                href="https://github.com/AbrahamMemory"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+              >
+                <Github className="size-4" />
+                GitHub
+              </a>
               
+              {/* Tombol SDK */}
               <Button variant="outline" className="gap-2 border-border bg-card">
                 <Package className="size-4" /> SDK
               </Button>
+              
+              {/* Tombol API Reference */}
               <Button variant="outline" className="gap-2 border-border bg-card">
                 <FileCode className="size-4" /> API Reference
               </Button>
