@@ -83,9 +83,20 @@ export function Community() {
                   <Button type="submit" className="flex-1 gap-2 bg-primary text-primary-foreground">
                     Join Waitlist <ArrowRight className="size-4" />
                   </Button>
-                  <Button type="button" variant="outline" className="gap-2 border-border bg-card">
-                    Follow on X
-                  </Button>
+                  <Button
+  type="button"
+  variant="outline"
+  className="gap-2 border-border bg-card"
+  onClick={() =>
+    window.open(
+      "https://x.com/AbrahamMemory",
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
+>
+  Follow on X
+</Button>
                   <Button type="button" variant="outline" className="gap-2 border-border bg-card">
                     <Wallet className="size-4" /> Connect
                   </Button>
