@@ -74,7 +74,7 @@ export function SiteHeader() {
               nativeButton={false}
               render={
                 <a
-                  href="https://x.com/@Abrahammemory"
+                  href="https://x.com/AbrahamMemory"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
