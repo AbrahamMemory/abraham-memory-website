@@ -13,7 +13,6 @@ import { Architecture } from "@/components/architecture"
 import { OpenInfrastructure } from "@/components/open-infrastructure"
 import { Vision } from "@/components/vision"
 import { Roadmap } from "@/components/roadmap"
-import { Community } from "@/components/community"
 import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
@@ -52,8 +51,6 @@ export default function Page() {
         <Vision />
         <Roadmap />
 
-        {/* COMMUNITY */}
-        <Community />
 
       </main>
 
