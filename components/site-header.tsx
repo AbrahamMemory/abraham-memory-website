@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Logo } from "./logo"
-import { Menu, X, Rocket, Github } from "lucide-react"
+import { Menu, X, Rocket, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const NAV_ITEMS = [
@@ -18,9 +18,17 @@ const [open, setOpen] = useState(false)
 
 useEffect(() => {
 const onScroll = () => setScrolled(window.scrollY > 12)
+
+```
 onScroll()
-window.addEventListener("scroll", onScroll, { passive: true })
+
+window.addEventListener("scroll", onScroll, {
+  passive: true,
+})
+
 return () => window.removeEventListener("scroll", onScroll)
+```
+
 }, [])
 
 return ( <div className="fixed inset-x-0 top-0 z-50">
@@ -42,7 +50,7 @@ return ( <div className="fixed inset-x-0 top-0 z-50">
     </div>
   </div>
 
-  {/* Navigation */}
+  {/* Header */}
   <header
     className={`border-b transition-all duration-300 ${
       scrolled
@@ -68,7 +76,7 @@ return ( <div className="fixed inset-x-0 top-0 z-50">
         ))}
       </div>
 
-      {/* Desktop Actions */}
+      {/* Desktop Buttons */}
       <div className="hidden items-center gap-2 lg:flex">
         <Button
           variant="outline"
@@ -88,7 +96,7 @@ return ( <div className="fixed inset-x-0 top-0 z-50">
 
         <Button
           size="sm"
-          className="gap-2 bg-primary text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(37,99,235,0.7)]"
+          className="gap-2 bg-primary text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)]"
           nativeButton={false}
           render={
             <a
@@ -96,7 +104,7 @@ return ( <div className="fixed inset-x-0 top-0 z-50">
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github className="mr-2 inline h-4 w-4" />
+              <Code2 className="mr-2 inline h-4 w-4" />
               Inspect Code
             </a>
           }
@@ -150,7 +158,7 @@ return ( <div className="fixed inset-x-0 top-0 z-50">
             />
 
             <Button
-              className="w-full gap-2 bg-primary text-primary-foreground"
+              className="w-full bg-primary text-primary-foreground"
               nativeButton={false}
               render={
                 <a
@@ -159,7 +167,7 @@ return ( <div className="fixed inset-x-0 top-0 z-50">
                   rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
                 >
-                  <Github className="mr-2 inline h-4 w-4" />
+                  <Code2 className="mr-2 inline h-4 w-4" />
                   Inspect Code
                 </a>
               }
@@ -170,6 +178,7 @@ return ( <div className="fixed inset-x-0 top-0 z-50">
     )}
   </header>
 </div>
+```
 
 )
 }
