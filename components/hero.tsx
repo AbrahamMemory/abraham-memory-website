@@ -52,7 +52,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.08 }}
             className="mt-7 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl lg:text-7xl"
           >
-            Memory Is the Missing <br className="hidden sm:block" /> Layer of{" "}
+            Every AI Agent Needs a Memory <br className="hidden sm:block" /> Layer of{" "}
             <span className="text-gradient">AI.</span>
           </motion.h1>
 
