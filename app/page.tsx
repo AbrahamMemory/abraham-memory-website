@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
+import { ModelLayer } from "@/components/modellayer"
 import { SystemFlow } from "@/components/systemflow"
 import { MemoryState } from "@/components/memory-state"
 import { Metrics } from "@/components/metrics"
@@ -22,36 +23,41 @@ export default function Page() {
       <SiteHeader />
 
       <main className="relative overflow-hidden">
-        
-        {/* CORE IDENTITY */}
+
+        {/* HERO */}
         <Hero />
 
-        {/* SYSTEM CORE (AI MEMORY INFRASTRUCTURE) */}
+        {/* AI MODEL LAYER */}
+        <ModelLayer />
+
+        {/* MEMORY CORE */}
         <SystemFlow />
         <MemoryState />
 
-        {/* VALUE LAYER */}
+        {/* PROTOCOL METRICS */}
         <Metrics />
+
+        {/* WHY MEMORY */}
         <WhyMemory />
         <Problem />
         <Solution />
 
-        {/* MEMORY SYSTEM DEMO */}
+        {/* MEMORY DEMONSTRATION */}
         <MemoryDemo />
 
-        {/* ARCHITECTURE LAYER */}
+        {/* TECHNICAL ARCHITECTURE */}
         <Architecture />
         <Ecosystem />
         <Developers />
 
-        {/* ECONOMIC / TOKEN LAYER */}
+        {/* TOKEN LAYER */}
         <Token />
 
-        {/* ROADMAP + VISION */}
+        {/* LONG TERM VISION */}
         <Vision />
         <Roadmap />
 
-        {/* COMMUNITY LAYER */}
+        {/* COMMUNITY */}
         <Community />
 
       </main>
