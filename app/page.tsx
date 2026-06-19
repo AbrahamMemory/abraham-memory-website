@@ -31,6 +31,9 @@ export default function Page() {
         {/* AI MODEL LAYER */}
         <ModelLayer />
 
+        <MemoryConsole />
+        <ModelRouter />
+
         {/* MEMORY CORE */}
         <SystemFlow />
         <MemoryState />
