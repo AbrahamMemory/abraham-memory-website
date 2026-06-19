@@ -10,7 +10,6 @@ const NAV_ITEMS = [
   { label: "Technology", href: "#technology" },
   { label: "Architecture", href: "#architecture" },
   { label: "Roadmap", href: "#roadmap" },
-  { label: "Community", href: "#community" },
 ]
 
 export function SiteHeader() {
