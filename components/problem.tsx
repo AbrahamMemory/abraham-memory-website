@@ -38,7 +38,7 @@ export function Problem() {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-3xl md:text-5xl font-semibold text-center"
         >
-          AI Agents Don’t Remember Anything
+          Probleim AI Agents Don’t Remember Anything
         </motion.h2>
 
         <motion.p
@@ -106,7 +106,7 @@ export function Problem() {
             </motion.h3>
 
             <p className="mt-4 text-white/60 leading-relaxed">
-              AI agents today do not maintain persistent state.  
+              AI agents today do not maintain persistent state.
               Every interaction is isolated — meaning decisions, preferences,
               and learned context are lost instantly after session ends.
             </p>
