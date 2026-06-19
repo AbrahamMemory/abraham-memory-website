@@ -46,15 +46,16 @@ export function Hero() {
           </motion.div>
 
           {/* SYSTEM TITLE */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.08 }}
-            className="mt-7 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl lg:text-7xl"
-          >
-            Every AI <Agent></Agent><br className="hidden sm:block" />  Needs a {" "}
-            <span className="text-gradient"> Memory .</span>
-          </motion.h1>
+<motion.h1
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7, delay: 0.08 }}
+  className="mt-7 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+>
+  AI Agents Forget.
+  <br className="hidden sm:block" />
+  Abraham <span className="text-gradient">Remembers.</span>
+</motion.h1>
 
           {/* SYSTEM DESCRIPTION */}
           <motion.p
