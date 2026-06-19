@@ -10,6 +10,7 @@ import { Problem } from "@/components/problem"
 import { Solution } from "@/components/solution"
 import { MemoryDemo } from "@/components/memory-demo"
 import { Architecture } from "@/components/architecture"
+import { OpenInfrastructure } from "@/components/open-infrastructure"
 import { Ecosystem } from "@/components/ecosystem"
 import { Developers } from "@/components/developers"
 import { Token } from "@/components/token"
@@ -48,6 +49,7 @@ export default function Page() {
 
         {/* TECHNICAL ARCHITECTURE */}
         <Architecture />
+        <OpenInfrastructure />
         <Ecosystem />
         <Developers />
 
