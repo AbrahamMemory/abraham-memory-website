@@ -108,7 +108,7 @@ export function SiteHeader() {
   >
     <XIcon />
   </a>
-</Button
+</Button>
 
             {/* GITHUB BUTTON */}
             <Button size="sm" asChild>
