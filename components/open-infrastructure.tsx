@@ -1,39 +1,48 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, FileText, BookOpen } from "lucide-react"
+import {
+  FolderGit2,
+  FileText,
+  BookOpen,
+} from "lucide-react"
 
 const ITEMS = [
   {
-    icon: Github,
+    icon: FolderGit2,
     title: "GitHub Organization",
     description:
-      "Open-source development, public repositories, and transparent progress.",
+      "Open-source development, public repositories, transparent progress, and public collaboration.",
     link: "github.com/AbrahamMemory",
   },
   {
     icon: FileText,
     title: "Litepaper",
     description:
-      "Protocol vision, architecture, and long-term roadmap.",
+      "Protocol vision, memory architecture, technical direction, and long-term roadmap.",
     link: "Abraham-Litepaper",
   },
   {
     icon: BookOpen,
     title: "Documentation",
     description:
-      "Developer resources, integration guides, and future SDK references.",
+      "Developer resources, integration guides, implementation examples, and future SDK references.",
     link: "abraham-docs",
   },
 ]
 
 export function OpenInfrastructure() {
   return (
-    <section className="py-24">
+    <section id="open-infrastructure" className="py-24">
       <div className="mx-auto max-w-6xl px-4">
 
-        <div className="text-center">
-          <div className="mb-3 text-xs uppercase tracking-[0.2em] text-primary">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <div className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
             Open Infrastructure
           </div>
 
@@ -45,7 +54,7 @@ export function OpenInfrastructure() {
             Abraham Memory is being developed through open repositories,
             public documentation, and transparent architecture design.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {ITEMS.map((item, index) => {
@@ -54,23 +63,25 @@ export function OpenInfrastructure() {
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="rounded-2xl border bg-card/60 p-6"
+                className="group rounded-2xl border border-border/70 bg-card/60 p-6 transition hover:-translate-y-1 hover:border-primary/40"
               >
-                <Icon className="mb-4 h-8 w-8 text-primary" />
+                <div className="mb-4 inline-flex size-12 items-center justify-center rounded-xl bg-secondary text-primary">
+                  <Icon className="size-6" />
+                </div>
 
-                <h3 className="font-semibold">
+                <h3 className="text-lg font-semibold">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
 
-                <div className="mt-5 text-xs text-primary">
+                <div className="mt-5 text-xs font-medium text-primary">
                   {item.link}
                 </div>
               </motion.div>
