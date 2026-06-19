@@ -9,8 +9,6 @@ const NAV_ITEMS = [
   { label: "Vision", href: "#vision" },
   { label: "Technology", href: "#technology" },
   { label: "Architecture", href: "#architecture" },
-  { label: "Ecosystem", href: "#ecosystem" },
-  { label: "Developers", href: "#developers" },
   { label: "Roadmap", href: "#roadmap" },
   { label: "Community", href: "#community" },
 ]
