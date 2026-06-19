@@ -19,22 +19,41 @@ export default function Page() {
   return (
     <>
       <SiteHeader />
+
       <main className="relative overflow-hidden">
+        
+        {/* CORE IDENTITY */}
         <Hero />
+
+        {/* SYSTEM CORE (AI MEMORY INFRASTRUCTURE) */}
         <SystemFlow />
+
+        {/* VALUE LAYER */}
         <Metrics />
         <WhyMemory />
         <Problem />
         <Solution />
+
+        {/* MEMORY SYSTEM DEMO */}
         <MemoryDemo />
+
+        {/* ARCHITECTURE LAYER */}
         <Architecture />
         <Ecosystem />
         <Developers />
+
+        {/* ECONOMIC / TOKEN LAYER */}
         <Token />
+
+        {/* ROADMAP + VISION */}
         <Vision />
         <Roadmap />
+
+        {/* COMMUNITY LAYER */}
         <Community />
+
       </main>
+
       <SiteFooter />
     </>
   )
