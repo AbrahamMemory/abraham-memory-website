@@ -98,17 +98,17 @@ export function SiteHeader() {
           <div className="hidden items-center gap-2 lg:flex">
 
             {/* X BUTTON */}
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href="https://x.com/abraham_memoryz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:bg-black hover:text-white transition"
-              >
-                <XIcon />
-                Follow on X
-              </a>
-            </Button>
+           <Button variant="outline" size="icon" asChild>
+  <a
+    href="https://x.com/abraham_memoryz"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Follow on X"
+    className="flex items-center justify-center"
+  >
+    <XIcon />
+  </a>
+</Button
 
             {/* GITHUB BUTTON */}
             <Button size="sm" asChild>
