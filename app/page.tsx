@@ -11,9 +11,6 @@ import { Solution } from "@/components/solution"
 import { MemoryDemo } from "@/components/memory-demo"
 import { Architecture } from "@/components/architecture"
 import { OpenInfrastructure } from "@/components/open-infrastructure"
-import { Ecosystem } from "@/components/ecosystem"
-import { Developers } from "@/components/developers"
-import { Token } from "@/components/token"
 import { Vision } from "@/components/vision"
 import { Roadmap } from "@/components/roadmap"
 import { Community } from "@/components/community"
@@ -50,11 +47,6 @@ export default function Page() {
         {/* TECHNICAL ARCHITECTURE */}
         <Architecture />
         <OpenInfrastructure />
-        <Ecosystem />
-        <Developers />
-
-        {/* TOKEN LAYER */}
-        <Token />
 
         {/* LONG TERM VISION */}
         <Vision />
