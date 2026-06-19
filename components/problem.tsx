@@ -124,36 +124,101 @@ export function Problem() {
                 }}
               />
 
-              {/* RIGHT SIDE = LIVING MEMORY NETWORK (UPGRADED) */}
-              {Array.from({ length: 7 }).map((_, i) => {
-                const x = 250 + (i % 3) * 45
-                const y = 80 + Math.floor(i / 3) * 70
+{/* RIGHT SIDE = FUTURE MEMORY SYSTEM */}
+{Array.from({ length: 7 }).map((_, i) => {
+  const x = 250 + (i % 3) * 45
+  const y = 80 + Math.floor(i / 3) * 70
 
-                return (
-                  <g key={`right-${i}`}>
+  return (
+    <g key={`right-${i}`}>
 
-                    {/* CONNECTION LINES */}
-                    {i > 0 && (
-                      <>
-                        <motion.line
-                          x1={x}
-                          y1={y}
-                          x2={250 + ((i - 1) % 3) * 45}
-                          y2={80 + Math.floor((i - 1) / 3) * 70}
-                          stroke="url(#prob-grad)"
-                          strokeWidth="1.5"
-                          initial={{ pathLength: 0, opacity: 0 }}
-                          animate={{
-                            pathLength: [0, 1],
-                            opacity: [0, 0.5, 0.3],
-                          }}
-                          transition={{
-                            duration: 2.5,
-                            delay: i * 0.2,
-                            repeat: Infinity,
-                            repeatType: "reverse",
-                          }}
-                        />
+      {/* MEMORY CONNECTION LINES (SMOOTHER + LIVING) */}
+      {i > 0 && (
+        <motion.line
+          x1={x}
+          y1={y}
+          x2={250 + ((i - 1) % 3) * 45}
+          y2={80 + Math.floor((i - 1) / 3) * 70}
+          stroke="url(#prob-grad)"
+          strokeWidth="1.5"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{
+            pathLength: [0, 1],
+            opacity: [0, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 2.8,
+            delay: i * 0.15,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        />
+      )}
+
+      {/* 🚀 DATA FLOW STREAM (NEW FUTURISTIC FEEL) */}
+      <motion.circle
+        r="2.2"
+        fill="#06B6D4"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: [0, 1, 0],
+          cx: [
+            250 + ((i - 1) % 3) * 45,
+            x,
+          ],
+          cy: [
+            80 + Math.floor((i - 1) / 3) * 70,
+            y,
+          ],
+        }}
+        transition={{
+          duration: 1.8,
+          repeat: Infinity,
+          delay: i * 0.18,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* 🧠 CORE NODE (FLOATING + ORBIT FEEL) */}
+      <motion.circle
+        cx={x}
+        cy={y}
+        r="6"
+        fill="url(#prob-grad)"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{
+          opacity: [0.5, 1, 0.7],
+          scale: [0.5, 1.2, 1],
+          y: [0, -2, 0], // subtle floating
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          delay: i * 0.12,
+          ease: "easeInOut",
+        }}
+      />
+    </g>
+  )
+})}
+
+{/* 🌊 MEMORY FIELD (BACKGROUND ENERGY LAYER) */}
+<motion.circle
+  cx="200"
+  cy="200"
+  r="120"
+  fill="url(#prob-grad)"
+  opacity="0.06"
+  animate={{
+    scale: [1, 1.1, 1],
+    opacity: [0.04, 0.08, 0.04],
+  }}
+  transition={{
+    duration: 6,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+/>
 
                         {/* DATA FLOW (MEMORY SIGNAL) */}
                         <motion.circle
