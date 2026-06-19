@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Logo } from "./logo"
-import { Menu, X, Rocket, Github } from "lucide-react"
+import { Menu, X, Rocket, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const NAV_ITEMS = [
@@ -80,8 +80,12 @@ export function SiteHeader() {
           {/* DESKTOP BUTTONS */}
           <div className="hidden items-center gap-2 lg:flex">
 
-            {/* X BUTTON */}
-            <Button variant="outline" size="sm" asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-border bg-card hover:bg-secondary"
+              asChild
+            >
               <a
                 href="https://x.com/abraham_memoryz"
                 target="_blank"
@@ -91,14 +95,17 @@ export function SiteHeader() {
               </a>
             </Button>
 
-            {/* FIXED GITHUB BUTTON */}
-            <Button size="sm" className="gap-2" asChild>
+            <Button
+              size="sm"
+              className="gap-2 bg-primary text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)]"
+              asChild
+            >
               <a
                 href="https://github.com/AbrahamMemory"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-4 w-4" />
+                <Code2 className="h-4 w-4" />
                 Inspect Code
               </a>
             </Button>
@@ -107,8 +114,9 @@ export function SiteHeader() {
 
           {/* MOBILE TOGGLE */}
           <button
-            className="inline-flex size-10 items-center justify-center rounded-lg lg:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-lg text-foreground lg:hidden"
             onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle menu"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -117,40 +125,46 @@ export function SiteHeader() {
 
         {/* MOBILE MENU */}
         {open && (
-          <div className="lg:hidden border-t border-border/70">
-            <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4">
+          <div className="glass-strong border-t border-border/70 lg:hidden">
+            <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
 
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground"
                 >
                   {item.label}
                 </a>
               ))}
 
-              <Button variant="outline" className="w-full" asChild>
-                <a
-                  href="https://x.com/abraham_memoryz"
-                  target="_blank"
-                  onClick={() => setOpen(false)}
-                >
-                  Follow on X
-                </a>
-              </Button>
+              <div className="mt-3 flex flex-col gap-2">
 
-              <Button className="w-full gap-2" asChild>
-                <a
-                  href="https://github.com/AbrahamMemory"
-                  target="_blank"
-                  onClick={() => setOpen(false)}
-                >
-                  <Github className="h-4 w-4" />
-                  Inspect Code
-                </a>
-              </Button>
+                <Button variant="outline" className="w-full" asChild>
+                  <a
+                    href="https://x.com/abraham_memoryz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                  >
+                    Follow on X
+                  </a>
+                </Button>
+
+                <Button className="w-full bg-primary text-primary-foreground" asChild>
+                  <a
+                    href="https://github.com/AbrahamMemory"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                  >
+                    <Code2 className="h-4 w-4 mr-2" />
+                    Inspect Code
+                  </a>
+                </Button>
+
+              </div>
 
             </div>
           </div>
