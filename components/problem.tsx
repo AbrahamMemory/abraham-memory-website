@@ -67,7 +67,7 @@ export function Problem() {
           </div>
         </div>
 
-        {/* RIGHT VISUAL (ENHANCED MEANING, SAME STYLE) */}
+        {/* RIGHT VISUAL — LIVING MEMORY SYSTEM */}
         <Reveal delay={0.15}>
           <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-3xl border border-border/70 bg-card shadow-[0_24px_60px_-30px_rgba(15,23,42,0.3)]">
 
@@ -80,7 +80,7 @@ export function Problem() {
                 </linearGradient>
               </defs>
 
-              {/* LEFT SIDE = EPHEMERAL MEMORY (FADES = SESSION RESET) */}
+              {/* LEFT SIDE = EPHEMERAL MEMORY (FADING SYSTEM) */}
               {Array.from({ length: 7 }).map((_, i) => {
                 const x = 60 + (i % 3) * 40
                 const y = 80 + Math.floor(i / 3) * 70
@@ -106,7 +106,7 @@ export function Problem() {
                 )
               })}
 
-              {/* CENTER = MEMORY RESET EVENT (NEW IMPORTANT MEANING) */}
+              {/* CENTER = MEMORY RESET PULSE (CRITICAL MOMENT) */}
               <motion.circle
                 cx="200"
                 cy="200"
@@ -115,7 +115,7 @@ export function Problem() {
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: [0, 0.18, 0],
-                  scale: [0.8, 1.05, 0.8],
+                  scale: [0.8, 1.1, 0.8],
                 }}
                 transition={{
                   duration: 4,
@@ -124,48 +124,79 @@ export function Problem() {
                 }}
               />
 
-              {/* RIGHT SIDE = PERSISTENT MEMORY (SLOWLY STABILIZES) */}
+              {/* RIGHT SIDE = LIVING MEMORY NETWORK (UPGRADED) */}
               {Array.from({ length: 7 }).map((_, i) => {
                 const x = 250 + (i % 3) * 45
                 const y = 80 + Math.floor(i / 3) * 70
 
                 return (
                   <g key={`right-${i}`}>
+
+                    {/* CONNECTION LINES */}
                     {i > 0 && (
-                      <motion.line
-                        x1={x}
-                        y1={y}
-                        x2={250 + ((i - 1) % 3) * 45}
-                        y2={80 + Math.floor((i - 1) / 3) * 70}
-                        stroke="url(#prob-grad)"
-                        strokeWidth="1.5"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{
-                          pathLength: [0, 1],
-                          opacity: [0, 0.6, 0.4],
-                        }}
-                        transition={{
-                          duration: 2.5,
-                          delay: 0.6 + i * 0.2,
-                          repeat: Infinity,
-                          repeatType: "reverse",
-                        }}
-                      />
+                      <>
+                        <motion.line
+                          x1={x}
+                          y1={y}
+                          x2={250 + ((i - 1) % 3) * 45}
+                          y2={80 + Math.floor((i - 1) / 3) * 70}
+                          stroke="url(#prob-grad)"
+                          strokeWidth="1.5"
+                          initial={{ pathLength: 0, opacity: 0 }}
+                          animate={{
+                            pathLength: [0, 1],
+                            opacity: [0, 0.5, 0.3],
+                          }}
+                          transition={{
+                            duration: 2.5,
+                            delay: i * 0.2,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                          }}
+                        />
+
+                        {/* DATA FLOW (MEMORY SIGNAL) */}
+                        <motion.circle
+                          r="2"
+                          fill="#06B6D4"
+                          initial={{ opacity: 0 }}
+                          animate={{
+                            opacity: [0, 1, 0],
+                            cx: [
+                              250 + ((i - 1) % 3) * 45,
+                              x,
+                            ],
+                            cy: [
+                              80 + Math.floor((i - 1) / 3) * 70,
+                              y,
+                            ],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: i * 0.25,
+                            ease: "easeInOut",
+                          }}
+                        />
+                      </>
                     )}
 
+                    {/* NODE (LIVING FORMATION SYSTEM) */}
                     <motion.circle
                       cx={x}
                       cy={y}
                       r="6"
                       fill="url(#prob-grad)"
+                      initial={{ opacity: 0, scale: 0.6 }}
                       animate={{
-                        scale: [1, 1.15, 1],
-                        opacity: [0.8, 1, 0.8],
+                        opacity: [0.4, 1, 0.7],
+                        scale: [0.6, 1.15, 1],
                       }}
                       transition={{
                         duration: 3,
                         repeat: Infinity,
-                        delay: i * 0.15,
+                        delay: i * 0.18,
+                        ease: "easeInOut",
                       }}
                     />
                   </g>
