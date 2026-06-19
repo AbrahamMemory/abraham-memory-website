@@ -1,6 +1,7 @@
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
 import { SystemFlow } from "@/components/systemflow"
+import { MemoryState } from "@/components/memory-state"
 import { Metrics } from "@/components/metrics"
 import { WhyMemory } from "@/components/why-memory"
 import { Problem } from "@/components/problem"
@@ -27,6 +28,7 @@ export default function Page() {
 
         {/* SYSTEM CORE (AI MEMORY INFRASTRUCTURE) */}
         <SystemFlow />
+        <MemoryState />
 
         {/* VALUE LAYER */}
         <Metrics />
