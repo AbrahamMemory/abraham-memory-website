@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react"
 import { Logo } from "./logo"
-import { Menu, X, Rocket, Code2 } from "lucide-react"
+import { Menu, X, Rocket, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const NAV_ITEMS = [
   { label: "Vision", href: "#vision" },
@@ -28,7 +29,7 @@ export function SiteHeader() {
   return (
     <div className="fixed inset-x-0 top-0 z-50">
 
-      {/* Announcement Bar */}
+      {/* ANNOUNCEMENT BAR */}
       <div className="relative overflow-hidden bg-gradient-to-r from-[#2563EB] via-[#38BDF8] to-[#06B6D4] text-white">
         <div className="mx-auto flex max-w-7xl items-center justify-center gap-3 px-4 py-2 text-center text-xs font-medium sm:text-sm">
 
@@ -42,14 +43,15 @@ export function SiteHeader() {
             href="https://github.com/AbrahamMemory"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden shrink-0 rounded-full bg-white/20 px-3 py-1 font-semibold backdrop-blur transition hover:bg-white/30 sm:inline-block"
+            className="hidden rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur transition hover:bg-white/30 sm:inline-block"
           >
-            Inspect Code
+            GitHub
           </a>
+
         </div>
       </div>
 
-      {/* Header */}
+      {/* HEADER */}
       <header
         className={`border-b transition-all duration-300 ${
           scrolled
@@ -60,9 +62,9 @@ export function SiteHeader() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
 
           {/* LOGO */}
-          <a href="#top" aria-label="Abraham Memory home">
+          <Link href="#top" className="flex items-center">
             <Logo />
-          </a>
+          </Link>
 
           {/* DESKTOP NAV */}
           <div className="hidden items-center gap-1 xl:flex">
@@ -77,15 +79,11 @@ export function SiteHeader() {
             ))}
           </div>
 
-          {/* DESKTOP BUTTONS */}
+          {/* DESKTOP ACTIONS */}
           <div className="hidden items-center gap-2 lg:flex">
 
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-border bg-card hover:bg-secondary"
-              asChild
-            >
+            {/* X */}
+            <Button variant="outline" size="sm" asChild>
               <a
                 href="https://x.com/abraham_memoryz"
                 target="_blank"
@@ -95,18 +93,16 @@ export function SiteHeader() {
               </a>
             </Button>
 
-            <Button
-              size="sm"
-              className="gap-2 bg-primary text-primary-foreground shadow-[0_8px_24px_-8px_rgba(37,99,235,0.6)]"
-              asChild
-            >
+            {/* GITHUB FIXED ICON */}
+            <Button size="sm" asChild>
               <a
                 href="https://github.com/AbrahamMemory"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center gap-2"
               >
-                <Code2 className="h-4 w-4" />
-                Inspect Code
+                <Github className="h-4 w-4" />
+                GitHub
               </a>
             </Button>
 
@@ -114,9 +110,8 @@ export function SiteHeader() {
 
           {/* MOBILE TOGGLE */}
           <button
-            className="inline-flex size-10 items-center justify-center rounded-lg text-foreground lg:hidden"
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Toggle menu"
+            className="inline-flex size-10 items-center justify-center rounded-lg lg:hidden"
+            onClick={() => setOpen(!open)}
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -125,46 +120,41 @@ export function SiteHeader() {
 
         {/* MOBILE MENU */}
         {open && (
-          <div className="glass-strong border-t border-border/70 lg:hidden">
-            <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
+          <div className="border-t border-border/70 lg:hidden">
+            <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4">
 
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+                  className="rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
                 >
                   {item.label}
                 </a>
               ))}
 
-              <div className="mt-3 flex flex-col gap-2">
+              <Button variant="outline" className="w-full" asChild>
+                <a
+                  href="https://x.com/abraham_memoryz"
+                  target="_blank"
+                  onClick={() => setOpen(false)}
+                >
+                  Follow on X
+                </a>
+              </Button>
 
-                <Button variant="outline" className="w-full" asChild>
-                  <a
-                    href="https://x.com/abraham_memoryz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setOpen(false)}
-                  >
-                    Follow on X
-                  </a>
-                </Button>
-
-                <Button className="w-full bg-primary text-primary-foreground" asChild>
-                  <a
-                    href="https://github.com/AbrahamMemory"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setOpen(false)}
-                  >
-                    <Code2 className="h-4 w-4 mr-2" />
-                    Inspect Code
-                  </a>
-                </Button>
-
-              </div>
+              <Button className="w-full" asChild>
+                <a
+                  href="https://github.com/AbrahamMemory"
+                  target="_blank"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-center gap-2"
+                >
+                  <Github className="h-4 w-4" />
+                  GitHub
+                </a>
+              </Button>
 
             </div>
           </div>
