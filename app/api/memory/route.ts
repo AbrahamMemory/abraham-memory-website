@@ -55,10 +55,24 @@ export async function POST(req: Request) {
 
     memoryStore.push(memory)
 
-    // 3. SIMPLE MEMORY RETRIEVAL (PHASE 1)
-    const recentMemories = memoryStore
-      .slice(-6)
-      .map((m) => `- ${m.message}`)
+    // 3. SEMANTIC MEMORY RETRIEVAL (STEP 2)
+
+const scoredMemories = memoryStore.map((m) => {
+  return {
+    ...m,
+    score: cosineSimilarity(vector, m.embedding),
+  }
+})
+
+// sort berdasarkan relevansi
+scoredMemories.sort((a, b) => b.score - a.score)
+
+// ambil TOP 5 memory paling relevan
+const topMemories = scoredMemories.slice(0, 5)
+
+const recentMemories = topMemories.map(
+  (m) => `- ${m.message}`
+)
 
     // 4. OPENAI REASONING (WITH MEMORY CONTEXT)
     const completion = await openai.chat.completions.create({
