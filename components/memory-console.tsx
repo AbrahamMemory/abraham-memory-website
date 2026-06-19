@@ -1,121 +1,90 @@
 "use client"
 
-import { Brain, Database, Clock3, Activity } from "lucide-react"
+import { useState } from "react"
 
 export function MemoryConsole() {
+  const [input, setInput] = useState("")
+  const [logs, setLogs] = useState<
+    { type: "user" | "ai"; text: string }[]
+  >([])
+  const [loading, setLoading] = useState(false)
+
+  async function sendMessage() {
+    if (!input.trim()) return
+
+    setLoading(true)
+
+    const res = await fetch("/api/memory", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: input,
+        userId: "user-1",
+      }),
+    })
+
+    const data = await res.json()
+
+    setLogs((prev) => [
+      ...prev,
+      { type: "user", text: input },
+      { type: "ai", text: data.reply },
+    ])
+
+    setInput("")
+    setLoading(false)
+  }
+
   return (
-    <section className="py-20">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="mb-10">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">
-            Memory Engine
-          </p>
-
-          <h2 className="mt-3 text-3xl font-semibold">
-            Persistent AI Memory Infrastructure
-          </h2>
-
-          <p className="mt-4 max-w-2xl text-muted-foreground">
-            A unified memory layer connecting users, AI agents, and
-            language models through persistent context.
-          </p>
+    <section className="mx-auto max-w-5xl py-16">
+      <div className="rounded-2xl border bg-card p-6 shadow-sm">
+        <div className="mb-4 text-xs uppercase tracking-widest text-muted-foreground">
+          Memory Engine Console (Live OpenAI)
         </div>
 
-        <div className="overflow-hidden rounded-3xl border border-border bg-card/40 backdrop-blur-xl">
-          <div className="flex items-center justify-between border-b border-border px-6 py-4">
-            <div className="flex items-center gap-3">
-              <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+        {/* LOGS */}
+        <div className="h-[320px] overflow-auto space-y-3 rounded-lg border bg-background p-4 text-sm">
+          {logs.length === 0 && (
+            <p className="text-muted-foreground">
+              Start interacting with memory system...
+            </p>
+          )}
 
-              <span className="text-sm text-muted-foreground">
-                Abraham Memory Engine Online
+          {logs.map((log, i) => (
+            <div key={i}>
+              <span className="font-semibold">
+                {log.type === "user" ? "You" : "AI"}:
+              </span>{" "}
+              <span className="text-muted-foreground">
+                {log.text}
               </span>
             </div>
+          ))}
+        </div>
 
-            <span className="text-xs uppercase tracking-widest text-primary">
-              Live Console
-            </span>
-          </div>
+        {/* INPUT */}
+        <div className="mt-4 flex gap-2">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type memory input..."
+            className="flex-1 rounded-lg border px-3 py-2 text-sm"
+          />
 
-          <div className="grid gap-6 p-6 lg:grid-cols-3">
-            <div className="rounded-2xl border border-border/70 p-5">
-              <Database className="mb-3 h-5 w-5 text-primary" />
+          <button
+            onClick={sendMessage}
+            disabled={loading}
+            className="rounded-lg bg-primary px-4 py-2 text-sm text-white"
+          >
+            {loading ? "Processing..." : "Send"}
+          </button>
+        </div>
 
-              <div className="text-sm text-muted-foreground">
-                Stored Memories
-              </div>
-
-              <div className="mt-2 text-3xl font-semibold">
-                1,284
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-border/70 p-5">
-              <Activity className="mb-3 h-5 w-5 text-primary" />
-
-              <div className="text-sm text-muted-foreground">
-                Active Models
-              </div>
-
-              <div className="mt-2 text-3xl font-semibold">
-                2
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-border/70 p-5">
-              <Clock3 className="mb-3 h-5 w-5 text-primary" />
-
-              <div className="text-sm text-muted-foreground">
-                Last Retrieval
-              </div>
-
-              <div className="mt-2 text-lg font-medium">
-                2 seconds ago
-              </div>
-            </div>
-          </div>
-
-          <div className="grid gap-6 border-t border-border p-6 lg:grid-cols-2">
-            <div className="rounded-2xl border border-border/70 p-5">
-              <div className="mb-4 flex items-center gap-2">
-                <Brain className="h-5 w-5 text-primary" />
-
-                <span className="font-medium">
-                  Active Models
-                </span>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center justify-between rounded-xl border px-4 py-3">
-                  <span>OpenAI</span>
-
-                  <span className="text-emerald-500">
-                    Online
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between rounded-xl border px-4 py-3">
-                  <span>Claude</span>
-
-                  <span className="text-emerald-500">
-                    Online
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-border/70 p-5">
-              <div className="mb-4 font-medium">
-                Current Memory Context
-              </div>
-
-              <p className="leading-relaxed text-muted-foreground">
-                Abraham Memory is building a persistent memory
-                infrastructure layer that enables AI agents to
-                retain identity, context, and experience across
-                conversations and time.
-              </p>
-            </div>
-          </div>
+        {/* STATUS */}
+        <div className="mt-3 text-xs text-muted-foreground">
+          Connected to OpenAI • Memory persists in runtime (Phase 1)
         </div>
       </div>
     </section>
