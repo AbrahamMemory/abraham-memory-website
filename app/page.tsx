@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero"
 import { ModelLayer } from "@/components/modellayer"
 import { SystemFlow } from "@/components/systemflow"
 import { MemoryState } from "@/components/memory-state"
+import { MemoryLifecycle } from "@/components/memory-lifecycle"
 import { Metrics } from "@/components/metrics"
 import { WhyMemory } from "@/components/why-memory"
 import { Problem } from "@/components/problem"
@@ -43,7 +44,7 @@ export default function Page() {
         <Solution />
 
         {/* MEMORY DEMONSTRATION */}
-        <MemoryDemo />
+        <MemoryLifecycle />
 
         {/* TECHNICAL ARCHITECTURE */}
         <Architecture />
