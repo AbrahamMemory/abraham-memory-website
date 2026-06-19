@@ -22,6 +22,20 @@ export async function POST(req: Request) {
       return Response.json({ error: "Message required" }, { status: 400 })
     }
 
+    function cosineSimilarity(a: number[], b: number[]) {
+  let dot = 0
+  let normA = 0
+  let normB = 0
+
+  for (let i = 0; i < a.length; i++) {
+    dot += a[i] * b[i]
+    normA += a[i] * a[i]
+    normB += b[i] * b[i]
+  }
+
+  return dot / (Math.sqrt(normA) * Math.sqrt(normB))
+}
+
     // 1. CREATE EMBEDDING (MEMORY VECTOR)
     const embeddingRes = await openai.embeddings.create({
       model: "text-embedding-3-small",
