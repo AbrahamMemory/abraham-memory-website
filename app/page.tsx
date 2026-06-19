@@ -2,6 +2,7 @@ import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
 import { ModelLayer } from "@/components/modellayer"
 import { MemoryConsole } from "@/components/memory-console"
+import { MemoryPlayground } from "@/components/MemoryPlayground"
 import { MemoryState } from "@/components/memory-state"
 import { MemoryLifecycle } from "@/components/memory-lifecycle"
 import { Metrics } from "@/components/metrics"
@@ -28,6 +29,7 @@ export default function Page() {
         {/* AI MODEL LAYER */}
         <ModelLayer />
         <MemoryConsole />
+        <MemoryPlayground />
 
         {/* MEMORY CORE */}
         <MemoryState />
