@@ -1,52 +1,93 @@
-import { NextResponse } from "next/server"
+import OpenAI from "openai"
 
-// TEMP STORAGE (RAM / prototype only)
-const memoryStore = new Map<string, any[]>()
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY!,
+})
 
-// SAVE MEMORY
+// TEMP MEMORY STORE (Phase 1 - no DB yet)
+const memoryStore: {
+  id: number
+  userId: string
+  message: string
+  embedding: number[]
+  timestamp: Date
+}[] = []
+
 export async function POST(req: Request) {
-  const body = await req.json()
-  const { userId, content, type } = body
+  try {
+    const body = await req.json()
+    const { message, userId = "default" } = body
 
-  if (!userId || !content) {
-    return NextResponse.json(
-      { error: "userId and content are required" },
-      { status: 400 }
+    if (!message) {
+      return Response.json({ error: "Message required" }, { status: 400 })
+    }
+
+    // 1. CREATE EMBEDDING (MEMORY VECTOR)
+    const embeddingRes = await openai.embeddings.create({
+      model: "text-embedding-3-small",
+      input: message,
+    })
+
+    const vector = embeddingRes.data[0].embedding
+
+    // 2. STORE MEMORY
+    const memory = {
+      id: Date.now(),
+      userId,
+      message,
+      embedding: vector,
+      timestamp: new Date(),
+    }
+
+    memoryStore.push(memory)
+
+    // 3. SIMPLE MEMORY RETRIEVAL (PHASE 1)
+    const recentMemories = memoryStore
+      .slice(-6)
+      .map((m) => `- ${m.message}`)
+
+    // 4. OPENAI REASONING (WITH MEMORY CONTEXT)
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: `
+You are Abraham Memory AI System.
+
+You are not a chatbot.
+You are a persistent memory intelligence layer.
+
+You remember user context across interactions.
+
+Stored memory context:
+${recentMemories.join("\n")}
+
+Rules:
+- Use memory context when relevant
+- If user provides new info, acknowledge and store it mentally
+- Maintain continuity of identity
+          `,
+        },
+        {
+          role: "user",
+          content: message,
+        },
+      ],
+    })
+
+    const reply = completion.choices[0].message.content
+
+    return Response.json({
+      reply,
+      memoryStored: true,
+      memoryCount: memoryStore.length,
+      recentMemories,
+    })
+  } catch (err: any) {
+    return Response.json(
+      { error: err.message || "Server error" },
+      { status: 500 }
     )
   }
-
-  const existing = memoryStore.get(userId) || []
-
-  const newMemory = {
-    id: crypto.randomUUID(),
-    userId,
-    type: type || "note",
-    content,
-    createdAt: Date.now(),
-  }
-
-  existing.push(newMemory)
-  memoryStore.set(userId, existing)
-
-  return NextResponse.json({
-    success: true,
-    memory: newMemory,
-  })
-}
-
-// GET MEMORY
-export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url)
-  const userId = searchParams.get("userId")
-
-  if (!userId) {
-    return NextResponse.json(
-      { error: "userId is required" },
-      { status: 400 }
-    )
-  }
-
-  return NextResponse.json({
-    memories: memoryStore.get(userId) || [],
-  })
 }
