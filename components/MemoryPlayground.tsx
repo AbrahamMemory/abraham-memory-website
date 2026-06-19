@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 type Memory = {
   id: string
   content: string
-  type?: string
   createdAt: number
 }
 
@@ -46,30 +45,46 @@ export function MemoryPlayground() {
     setLoading(false)
   }
 
+  // ENTER TO SAVE
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault()
+      saveMemory()
+    }
+  }
+
+  // AUTO REFRESH (REAL AI FEEL)
   useEffect(() => {
     loadMemories()
+
+    const interval = setInterval(() => {
+      loadMemories()
+    }, 5000) // refresh tiap 5 detik
+
+    return () => clearInterval(interval)
   }, [])
 
   return (
-    <section className="relative mx-auto max-w-4xl px-4 py-16">
+    <section className="mx-auto max-w-4xl px-4 py-16">
 
       {/* HEADER */}
       <div className="mb-6 text-center">
-        <h2 className="text-2xl font-semibold tracking-tight">
+        <h2 className="text-2xl font-semibold">
           AI Memory Playground
         </h2>
         <p className="text-sm text-muted-foreground">
-          Store and retrieve agent memory in real time
+          Real-time memory layer for AI agents
         </p>
       </div>
 
-      {/* INPUT CARD */}
-      <div className="rounded-2xl border bg-white/60 p-4 shadow-sm backdrop-blur">
+      {/* INPUT */}
+      <div className="rounded-2xl border bg-white/60 p-4 backdrop-blur">
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
           placeholder="Write a memory for AI agent..."
-          className="h-24 w-full resize-none rounded-lg border bg-background p-3 text-sm outline-none focus:ring-2 focus:ring-black/10"
+          className="h-24 w-full resize-none rounded-lg border p-3 text-sm outline-none focus:ring-2"
         />
 
         <div className="mt-3 flex justify-end">
@@ -78,22 +93,23 @@ export function MemoryPlayground() {
             disabled={loading}
             className="rounded-lg bg-black px-4 py-2 text-sm text-white transition hover:opacity-90 disabled:opacity-50"
           >
-            {loading ? "Saving..." : "Save Memory"}
+            {loading ? "Thinking..." : "Save Memory"}
           </button>
         </div>
       </div>
 
-      {/* MEMORY FEED */}
+      {/* MEMORY LIST */}
       <div className="mt-8 space-y-3">
+
         {memories.length === 0 ? (
-          <div className="text-center text-sm text-muted-foreground">
-            No memories yet. Start writing one above.
+          <div className="rounded-xl border bg-white/40 p-6 text-center text-sm text-muted-foreground">
+            No memory yet. AI is waiting for your input.
           </div>
         ) : (
           memories.map((m) => (
             <div
               key={m.id}
-              className="rounded-xl border bg-white/40 p-4 backdrop-blur transition hover:bg-white/60"
+              className="rounded-xl border bg-white/40 p-4 transition hover:bg-white/60"
             >
               <p className="text-sm">{m.content}</p>
 
@@ -103,8 +119,8 @@ export function MemoryPlayground() {
             </div>
           ))
         )}
-      </div>
 
+      </div>
     </section>
   )
 }
