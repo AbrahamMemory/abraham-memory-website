@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
+import { SystemFlow } from "@/components/systemflow"
 import { Metrics } from "@/components/metrics"
 import { WhyMemory } from "@/components/why-memory"
 import { Problem } from "@/components/problem"
@@ -20,6 +21,7 @@ export default function Page() {
       <SiteHeader />
       <main className="relative overflow-hidden">
         <Hero />
+        <SystemFlow />
         <Metrics />
         <WhyMemory />
         <Problem />
