@@ -1,6 +1,8 @@
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
 import { ModelLayer } from "@/components/modellayer"
+import { MemoryConsole } from "@/components/memory-console"
+import { ModelRouter } from "@/components/model-router"
 import { SystemFlow } from "@/components/systemflow"
 import { MemoryState } from "@/components/memory-state"
 import { MemoryLifecycle } from "@/components/memory-lifecycle"
