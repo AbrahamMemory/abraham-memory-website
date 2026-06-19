@@ -12,7 +12,13 @@ const BADGES = [
 ]
 
 export function Hero() {
-return ( <section id="top" className="relative overflow-hidden pt-28 lg:pt-32"> <div className="pointer-events-none absolute inset-0 mesh-bg" aria-hidden="true" />
+return ( <section
+   id="top"
+   className="relative overflow-hidden pt-28 lg:pt-32"
+ > <div
+     className="pointer-events-none absolute inset-0 mesh-bg"
+     aria-hidden="true"
+   />
 
 ```
   <div className="absolute inset-0 -z-0">
@@ -65,8 +71,8 @@ return ( <section id="top" className="relative overflow-hidden pt-28 lg:pt-32"> 
         className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
       >
         The memory infrastructure layer for AI agents.
-        Persistent identity, context, and retrieval across models,
-        sessions, and time.
+        Persistent identity, context, and retrieval across
+        models, sessions, and time.
       </motion.p>
 
       <motion.div
