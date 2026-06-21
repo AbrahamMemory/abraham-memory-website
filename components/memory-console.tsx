@@ -12,29 +12,57 @@ export function MemoryConsole() {
   async function sendMessage() {
     if (!input.trim()) return
 
-    setLoading(true)
+    const userMessage = input
 
-    const res = await fetch("/api/memory", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: input,
-        userId: "user-1",
-      }),
-    })
-
-    const data = await res.json()
-
+    // langsung tampilkan user message
     setLogs((prev) => [
       ...prev,
-      { type: "user", text: input },
-      { type: "ai", text: data.reply },
+      { type: "user", text: userMessage },
     ])
 
     setInput("")
-    setLoading(false)
+    setLoading(true)
+
+    try {
+      const res = await fetch("/api/memory", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: userMessage,
+          userId: "user-1",
+        }),
+      })
+
+      const data = await res.json()
+
+      console.log("API RESPONSE:", data)
+
+      if (!res.ok) {
+        throw new Error(data?.error || "API request failed")
+      }
+
+      setLogs((prev) => [
+        ...prev,
+        {
+          type: "ai",
+          text: data.reply || "No response from AI",
+        },
+      ])
+    } catch (err: any) {
+      console.error("SEND MESSAGE ERROR:", err)
+
+      setLogs((prev) => [
+        ...prev,
+        {
+          type: "ai",
+          text: "Error: " + err.message,
+        },
+      ])
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -44,7 +72,7 @@ export function MemoryConsole() {
           Memory Engine Console (Live OpenAI)
         </div>
 
-        {/* LOGS */}
+        {/* LOG AREA */}
         <div className="h-[320px] overflow-auto space-y-3 rounded-lg border bg-background p-4 text-sm">
           {logs.length === 0 && (
             <p className="text-muted-foreground">
@@ -62,6 +90,12 @@ export function MemoryConsole() {
               </span>
             </div>
           ))}
+
+          {loading && (
+            <div className="text-muted-foreground">
+              AI is thinking...
+            </div>
+          )}
         </div>
 
         {/* INPUT */}
@@ -69,6 +103,9 @@ export function MemoryConsole() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") sendMessage()
+            }}
             placeholder="Type memory input..."
             className="flex-1 rounded-lg border px-3 py-2 text-sm"
           />
@@ -76,7 +113,7 @@ export function MemoryConsole() {
           <button
             onClick={sendMessage}
             disabled={loading}
-            className="rounded-lg bg-primary px-4 py-2 text-sm text-white"
+            className="rounded-lg bg-primary px-4 py-2 text-sm text-white disabled:opacity-50"
           >
             {loading ? "Processing..." : "Send"}
           </button>

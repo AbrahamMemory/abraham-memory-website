@@ -4,7 +4,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 })
 
-// TEMP MEMORY STORE (Phase 1 - no DB yet)
+// TEMP MEMORY STORE (Phase 1 - in-memory only)
 const memoryStore: {
   id: number
   userId: string
@@ -13,16 +13,7 @@ const memoryStore: {
   timestamp: Date
 }[] = []
 
-export async function POST(req: Request) {
-  try {
-    const body = await req.json()
-    const { message, userId = "default" } = body
-
-    if (!message) {
-      return Response.json({ error: "Message required" }, { status: 400 })
-    }
-
-    function cosineSimilarity(a: number[], b: number[]) {
+function cosineSimilarity(a: number[], b: number[]) {
   let dot = 0
   let normA = 0
   let normB = 0
@@ -36,7 +27,21 @@ export async function POST(req: Request) {
   return dot / (Math.sqrt(normA) * Math.sqrt(normB))
 }
 
-    // 1. CREATE EMBEDDING (MEMORY VECTOR)
+export async function POST(req: Request) {
+  console.log("API KEY LOADED:", process.env.OPENAI_API_KEY ? "YES" : "NO")
+
+  try {
+    const body = await req.json()
+    const { message, userId = "default" } = body
+
+    if (!message) {
+      return Response.json(
+        { error: "Message required" },
+        { status: 400 }
+      )
+    }
+
+    // 1. CREATE EMBEDDING (vector memory)
     const embeddingRes = await openai.embeddings.create({
       model: "text-embedding-3-small",
       input: message,
@@ -44,7 +49,7 @@ export async function POST(req: Request) {
 
     const vector = embeddingRes.data[0].embedding
 
-    // 2. STORE MEMORY
+    // 2. STORE MEMORY (temporary)
     const memory = {
       id: Date.now(),
       userId,
@@ -55,26 +60,24 @@ export async function POST(req: Request) {
 
     memoryStore.push(memory)
 
-    // 3. SEMANTIC MEMORY RETRIEVAL (STEP 2)
+    // 3. SEMANTIC SEARCH (memory retrieval)
+    const scoredMemories = memoryStore.map((m) => ({
+      ...m,
+      score: cosineSimilarity(vector, m.embedding),
+    }))
 
-const scoredMemories = memoryStore.map((m) => {
-  return {
-    ...m,
-    score: cosineSimilarity(vector, m.embedding),
-  }
-})
+    scoredMemories.sort((a, b) => b.score - a.score)
 
-// sort berdasarkan relevansi
-scoredMemories.sort((a, b) => b.score - a.score)
+    const topMemories = scoredMemories.slice(0, 5)
 
-// ambil TOP 5 memory paling relevan
-const topMemories = scoredMemories.slice(0, 5)
+    const recentMemories = topMemories.map((m) => `- ${m.message}`)
 
-const recentMemories = topMemories.map(
-  (m) => `- ${m.message}`
-)
+    const safeMemoryContext =
+      recentMemories.length > 0
+        ? recentMemories.join("\n")
+        : "- No previous memory yet"
 
-    // 4. OPENAI REASONING (WITH MEMORY CONTEXT)
+    // 4. GPT RESPONSE WITH MEMORY CONTEXT
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
@@ -86,15 +89,16 @@ You are Abraham Memory AI System.
 You are not a chatbot.
 You are a persistent memory intelligence layer.
 
-You remember user context across interactions.
+You store and retrieve user context across time.
 
-Stored memory context:
-${recentMemories.join("\n")}
+Memory Context:
+${safeMemoryContext}
 
 Rules:
 - Use memory context when relevant
-- If user provides new info, acknowledge and store it mentally
-- Maintain continuity of identity
+- If user gives new info, treat it as important memory
+- Maintain identity continuity across conversations
+- Be concise and intelligent
           `,
         },
         {
@@ -113,6 +117,8 @@ Rules:
       recentMemories,
     })
   } catch (err: any) {
+    console.error("API ERROR:", err)
+
     return Response.json(
       { error: err.message || "Server error" },
       { status: 500 }
